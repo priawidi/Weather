@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".ForecastActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                </LinearLayout>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="16dp"
+                    android:alpha=".7"
+                    android:backgroundTint="@android:color/transparent"
+                    android:layout_marginVertical="8dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <ImageView
+                            android:id="@+id/img_history"
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            tools:src="@drawable/ic_cloud"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:gravity="left"
+                            android:textColor="#DBDBDB"
+                            android:text="Yesterday"/>
+
+                        <TextView
+                            android:id="@+id/tv_history_condition"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:textColor="#DBDBDB"
+                            android:text="condition"/>
+
+                        <TextView
+                            android:id="@+id/tv_history_avgtemp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="#DBDBDB"
+                            android:text="avgtemp"/>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_forecast"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    tools:listitem="@layout/forecast_item" />
+
+
+            </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

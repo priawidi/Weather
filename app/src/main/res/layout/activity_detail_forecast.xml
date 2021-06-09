@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swiperefresh2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".DetailForecastActivity">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipelayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_detail_forecast_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:text="Date"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageView
+                android:id="@+id/img_detail_weather"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                tools:src="@drawable/abc_vector_test" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:weightSum="5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_avgtemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="28dp"
+                    android:text="AvgTemp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_maxtemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="28dp"
+                    android:text="MaxTemp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_mintemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="28dp"
+                    android:text="MinTemp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_maxwind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="28dp"
+                    tools:text="MaxWind"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_totalprecip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="28dp"
+                    android:text="Precip"
+                    />
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_margin="12dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_detail_forecast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="24dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/forecast_item"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>
