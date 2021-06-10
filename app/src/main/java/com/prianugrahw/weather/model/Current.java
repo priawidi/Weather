@@ -10,6 +10,7 @@ public class Current {
     private String last_updated;
     private int humidity;
     private int cloud;
+    private String localtime;
     private Condition condition;
     private AirQuality air_quality;
 
@@ -75,6 +76,14 @@ public class Current {
 
     public void setCloud(int cloud) {
         this.cloud = cloud;
+    }
+
+    public String getLocaltime() {
+        return localtime;
+    }
+
+    public void setLocaltime(String localtime) {
+        this.localtime = localtime;
     }
 
     public Condition getCondition() {

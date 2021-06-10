@@ -90,4 +90,8 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ListVi
     public interface OnForecastListener{
         void onForecastClick(int position);
     }
+
+    public void clear(){
+        listForecast.clear();
+    }
 }

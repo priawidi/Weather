@@ -12,6 +12,7 @@ public class Day implements Parcelable {
     private Double mintemp_c;
     private Double maxwind_kph;
     private Double totalprecip_mm;
+    private Double avghumidity;
     private String daily_will_it_rain;
 
     public Condition getCondition() {
@@ -70,6 +71,15 @@ public class Day implements Parcelable {
         this.daily_will_it_rain = daily_will_it_rain;
     }
 
+    public Double getAvghumidity() {
+        return avghumidity;
+    }
+
+    public void setAvghumidity(Double avghumidity) {
+        this.avghumidity = avghumidity;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -83,6 +93,7 @@ public class Day implements Parcelable {
         dest.writeValue(this.mintemp_c);
         dest.writeValue(this.maxwind_kph);
         dest.writeValue(this.totalprecip_mm);
+        dest.writeValue(this.avghumidity);
         dest.writeString(this.daily_will_it_rain);
     }
 
@@ -93,6 +104,7 @@ public class Day implements Parcelable {
         this.mintemp_c = (Double) source.readValue(Double.class.getClassLoader());
         this.maxwind_kph = (Double) source.readValue(Double.class.getClassLoader());
         this.totalprecip_mm = (Double) source.readValue(Double.class.getClassLoader());
+        this.avghumidity = (Double) source.readValue(Double.class.getClassLoader());
         this.daily_will_it_rain = source.readString();
     }
 
@@ -106,10 +118,11 @@ public class Day implements Parcelable {
         this.mintemp_c = (Double) in.readValue(Double.class.getClassLoader());
         this.maxwind_kph = (Double) in.readValue(Double.class.getClassLoader());
         this.totalprecip_mm = (Double) in.readValue(Double.class.getClassLoader());
+        this.avghumidity = (Double) in.readValue(Double.class.getClassLoader());
         this.daily_will_it_rain = in.readString();
     }
 
-    public static final Parcelable.Creator<Day> CREATOR = new Parcelable.Creator<Day>() {
+    public static final Creator<Day> CREATOR = new Creator<Day>() {
         @Override
         public Day createFromParcel(Parcel source) {
             return new Day(source);

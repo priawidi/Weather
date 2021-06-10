@@ -6,140 +6,317 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
+    android:orientation="vertical"
     tools:context=".DetailForecastActivity">
+
+    <RelativeLayout
+        android:id="@+id/loadingPanel3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/Paradise" />
+
+    </RelativeLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipelayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_detail_forecast_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            android:text="Date"
-            />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/img_detail_weather"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                tools:src="@drawable/abc_vector_test" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:weightSum="5"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_avgtemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:textSize="28dp"
-                    android:text="AvgTemp"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_maxtemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:textSize="28dp"
-                    android:text="MaxTemp"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_mintemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:textSize="28dp"
-                    android:text="MinTemp"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_maxwind"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:textSize="28dp"
-                    tools:text="MaxWind"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_totalprecip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:textSize="28dp"
-                    android:text="Precip"
-                    />
-
-
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            >
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:layout_margin="12dp">
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="12dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/BlueStartGradient"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:contentPadding="8dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/list_detail_forecast"
+                <RelativeLayout
+                    android:id="@+id/loadingPanel"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="24dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/forecast_item"/>
+                    android:layout_height="match_parent"
+                    android:gravity="center">
 
-            </LinearLayout>
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/Paradise" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:backgroundTint="@color/BlueStartGradient"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="4dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            android:layout_margin="4dp"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:weightSum="3">
+
+                                <TextView
+                                    android:id="@+id/tv_detail_forecast_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_weight="1"
+                                    android:text="Date"
+                                    android:textColor="@color/white"
+                                    android:textSize="20dp" />
+
+
+                                <ImageView
+                                    android:id="@+id/img_detail_weather"
+                                    android:layout_width="90dp"
+                                    android:layout_height="0dp"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="2"
+                                    tools:src="@drawable/ic_cloud" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal"
+                                    android:weightSum="3">
+
+                                    <ImageView
+                                        android:layout_width="0dp"
+                                        android:layout_height="80dp"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="1"
+                                        android:src="@drawable/ic_temp" />
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_weight="2"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:weightSum="2">
+
+                                        <TextView
+                                            android:id="@+id/tv_avgtemp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_gravity="center"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="AvgTemp"
+                                            android:textColor="@color/white"
+                                            android:textSize="34dp"
+                                            android:textStyle="bold" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_gravity="center"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="horizontal"
+                                            android:weightSum="7">
+
+                                            <TextView
+                                                android:id="@+id/tv_maxtemp"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="right|top"
+                                                android:layout_weight="3"
+                                                android:autoSizeTextType="uniform"
+                                                android:gravity="right"
+                                                android:text="MaxTemp"
+                                                android:textColor="@color/white" />
+
+                                            <TextView
+                                                android:layout_width="1dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center|top"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="/"
+                                                android:textColor="@color/white" />
+
+
+                                            <TextView
+                                                android:id="@+id/tv_mintemp"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="left|top"
+                                                android:layout_weight="3"
+                                                android:autoSizeTextType="uniform"
+                                                android:gravity="left"
+                                                android:text="MinTemp"
+                                                android:textColor="@color/white" />
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:weightSum="3">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="horizontal"
+                                        android:weightSum="3">
+
+                                        <ImageView
+                                            android:layout_width="0dp"
+                                            android:layout_height="24dp"
+                                            android:layout_gravity="center"
+                                            android:layout_weight="1"
+                                            android:src="@drawable/ic_wind" />
+
+                                        <TextView
+                                            android:id="@+id/tv_maxwind"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_weight="2"
+                                            android:gravity="left"
+                                            android:textColor="@color/white"
+
+                                            tools:text="MaxWind" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="horizontal"
+                                        android:weightSum="3">
+
+                                        <ImageView
+                                            android:layout_width="0dp"
+                                            android:layout_height="24dp"
+                                            android:layout_gravity="center"
+                                            android:layout_weight="1"
+                                            android:src="@drawable/ic_precipitation" />
+
+                                        <TextView
+                                            android:id="@+id/tv_totalprecip"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_weight="2"
+                                            android:gravity="left"
+                                            android:text="Precip"
+                                            android:textColor="@color/white" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="horizontal"
+                                        android:weightSum="3">
+
+                                        <ImageView
+                                            android:layout_width="0dp"
+                                            android:layout_height="24dp"
+                                            android:layout_gravity="center"
+                                            android:layout_weight="1"
+                                            android:src="@drawable/ic_humidity" />
+
+                                        <TextView
+                                            android:id="@+id/tv_humidity"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_weight="2"
+                                            android:gravity="left"
+                                            android:text="Humidity"
+                                            android:textColor="@color/white" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_detail_forecast"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            tools:listitem="@layout/hourly_forecast_item" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
         </LinearLayout>
 
-    </LinearLayout>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

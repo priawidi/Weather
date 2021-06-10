@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -68,11 +70,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         //initialize swipe refresh layout
         swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipelayout);
-        linearLayout = (LinearLayout) findViewById(R.id.swiperefresh);
+
         //refresh color
         int color1 = getResources().getColor(R.color.Purple);
         int color2 = getResources().getColor(R.color.Paradise);
@@ -120,15 +123,30 @@ public class MainActivity extends AppCompatActivity {
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                RefreshScreen();
                 // Handler untuk menjalankan jeda selama 5 detik
                 new Handler().postDelayed(new Runnable() {
                     @Override public void run() {
                         // Berhenti berputar/refreshing
-                        swipeLayout.setRefreshing(false);
+                        if(swipeLayout.isRefreshing()){
+                            swipeLayout.setRefreshing(false);
+                        }
                     }
-                }, 2000);
+                }, 500);
             }
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void RefreshScreen() {
+        findViewById(R.id.loadingPanel4).setVisibility(View.VISIBLE);
+
+        listForecast.clear();
+        listDetailCurrent.clear();
+        getCurrentDataFromApi();
+        getForecastDataFromApi();
+        getHistoryDataFromApi();
+        Log.d(TAG, "RefreshScreen: berhasil refresh");
     }
 
     private void getCurrentDataFromApi (){
@@ -154,19 +172,23 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 tv_localtime.setText(dateFormat);
+                //tv_localtime.setText(response.body().getCurrent().getLocaltime());
                 tv_lastup.setText("Last Updated : " + dateFormat1);
                 tv_loc.setText(response.body().getLocation().getName());
-                tv_wind.setText(Double.toString(response.body().getCurrent().getWind_kph()) + " kph");
-                tv_pressure.setText(Double.toString(response.body().getCurrent().getPressure_mb() )+ " mb");
-                tv_precip.setText(Double.toString(response.body().getCurrent().getPrecip_mm())+ " mm");
-                tv_humidity.setText(Integer.toString(response.body().getCurrent().getHumidity()) + " %");
-                tv_cloud.setText(Integer.toString(response.body().getCurrent().getCloud()) + " %");
-                tv_gust.setText(Double.toString(response.body().getCurrent().getGust_kph()) + " kph");
+                tv_wind.setText(Double.toString(response.body().getCurrent().getWind_kph()) + "km/h");
+                tv_pressure.setText(Double.toString(response.body().getCurrent().getPressure_mb() )+ "mbar");
+                tv_precip.setText(Double.toString(response.body().getCurrent().getPrecip_mm())+ "mm");
+                tv_humidity.setText(Integer.toString(response.body().getCurrent().getHumidity()) + "%");
+                tv_cloud.setText(Integer.toString(response.body().getCurrent().getCloud()) + "%");
+                tv_gust.setText(Double.toString(response.body().getCurrent().getGust_kph()) + "km/h");
                 tv_condition.setText(response.body().getCurrent().getCondition().getText());
-                tv_temp.setText(Double.toString(response.body().getCurrent().getTemp_c()) + " \u2103");
+                tv_temp.setText(Double.toString(response.body().getCurrent().getTemp_c()) + "\u2103");
                 //Glide.with(MainActivity.this).load("https:" + response.body().getCurrent().getCondition().getIcon()).into(img);
 
-                tv_epa.setText("AQI " + response.body().getCurrent().getAir_quality().getUsepaindex());;
+                tv_epa.setText("AQI " + response.body().getCurrent().getAir_quality().getUsepaindex());
+
+
+                findViewById(R.id.loadingPanel4).setVisibility(View.GONE);
 
             }
 
@@ -195,9 +217,14 @@ public class MainActivity extends AppCompatActivity {
                 tv_fc_condition.setText(listForecast.get(1).getDay().getCondition().getText());
                 Glide.with(MainActivity.this).load("https:" + listForecast.get(1).getDay().getCondition().getIcon()).into(tv_icon);
 
+                findViewById(R.id.loadingPanel1).setVisibility(View.GONE);
+
                 listDetailCurrent = listForecast.get(0).getHour();
                 DetailCurrentAdapter detailCurrentAdapter = new DetailCurrentAdapter(listDetailCurrent);
                 recyclerView.setAdapter(detailCurrentAdapter);
+
+                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+
             }
 
             @Override
@@ -227,6 +254,8 @@ public class MainActivity extends AppCompatActivity {
                 tv_hist_avgtemp.setText(Double.toString(listHistory.get(0).getDay().getAvgtemp_c())+ " °C");
                 tv_hist_condition.setText(listHistory.get(0).getDay().getCondition().getText());
                 Glide.with(MainActivity.this).load("https:" + listHistory.get(0).getDay().getCondition().getIcon()).into(history_img);
+
+                findViewById(R.id.loadingPanel1).setVisibility(View.GONE);
 
             }
 

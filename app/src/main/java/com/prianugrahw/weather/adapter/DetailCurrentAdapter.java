@@ -61,4 +61,7 @@ public class DetailCurrentAdapter extends RecyclerView.Adapter<DetailCurrentAdap
 
         }
     }
+    public void clear(){
+        listHourCurrent.clear();
+    }
 }

@@ -36,8 +36,10 @@ public class DetailForecastAdapter extends RecyclerView.Adapter<DetailForecastAd
         String split_date = listHourForecast.get(position).getTime();
         String[] date_splited = split_date.split(" ");
         holder.tv_time.setText(date_splited[1]);
-        holder.tv_temp.setText(Double.toString(listHourForecast.get(position).getTemp_c()) + " °C");
+        holder.tv_temp.setText(Double.toString(listHourForecast.get(position).getTemp_c()) + "°C");
         holder.tv_condition.setText(listHourForecast.get(position).getCondition().getText());
+        holder.tv_wind.setText(Double.toString(listHourForecast.get(position).getWind_kph())+ "km/h");
+        holder.tv_precip.setText(Double.toString(listHourForecast.get(position).getPrecip_mm()) + "mm");
         Glide.with(holder.itemView.getContext()).load("https:" + listHourForecast.get(position).getCondition().getIcon()).into(holder.tv_icon);
 
     }
@@ -57,9 +59,14 @@ public class DetailForecastAdapter extends RecyclerView.Adapter<DetailForecastAd
             tv_time = itemView.findViewById(R.id.tv_hour_forecast_date);
             tv_temp = itemView.findViewById(R.id.tv_hour_forecast_avgtemp);
             tv_condition = itemView.findViewById(R.id.tv_hour_forecast_condition);
+            tv_wind = itemView.findViewById(R.id.tv_hour_forecast_wind);
+            tv_precip = itemView.findViewById(R.id.tv_hour_forecast_precip);
             tv_icon = itemView.findViewById(R.id.img_hour_forecast);
 
 
         }
+    }
+    public void clear(){
+        listHourForecast.clear();
     }
 }
